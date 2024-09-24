@@ -4,6 +4,7 @@
 // @version      1.0.0
 // @description  下载弹琴吧网页端曲谱图片
 // @author       RepEater
+// @license      MIT
 // @match        *://www.tan8.com/yuepu*
 // @grant        none
 // @run-at       document-end

@@ -18,13 +18,17 @@
 ## 安装
 
 <details open>
-<summary>[推荐] 油叉安装</summary>
-点击[链接](https://greasyfork.org/zh-CN/scripts/510014-弹琴吧曲谱下载)跳转至油叉页面。
+<summary>使用油叉安装</summary>
+
+点击[链接](https://greasyfork.org/zh-CN/scripts/510014-%E5%BC%B9%E7%90%B4%E5%90%A7%E6%9B%B2%E8%B0%B1%E4%B8%8B%E8%BD%BD)跳转至油叉页面。
+
 </details>
 
 <details>
-<summary>JS文件直链</summary>
+<summary>使用文件直链安装</summary>
+
 浏览器安装油猴脚本后，点击[文件链接](https://github.com/GZH2K19/tan8-downloader/raw/refs/heads/default/tan8-downloader.user.js)会自动跳转到安装界面。
+
 </details>
 
 ## 更新日志

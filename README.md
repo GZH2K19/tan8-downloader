@@ -9,7 +9,6 @@
 <a href="./LICENSE">
   <img src="https://img.shields.io/github/license/GZH2K19/tan8-downloader.svg" alt="license">
 </a>
-
 </div>
 
 ## 说明
@@ -17,7 +16,7 @@
 
 ## 安装
 
-<details open>
+<details>
 <summary>使用油叉安装</summary>
 
 点击[链接](https://greasyfork.org/zh-CN/scripts/510014-%E5%BC%B9%E7%90%B4%E5%90%A7%E6%9B%B2%E8%B0%B1%E4%B8%8B%E8%BD%BD)跳转至油叉页面。

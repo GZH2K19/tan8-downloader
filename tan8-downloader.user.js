@@ -2,7 +2,7 @@
 // @name         弹琴吧曲谱下载
 // @namespace    https://github.com/GZH2K19/tan8-downloader
 // @version      1.0.0
-// @description  下载弹琴吧网页端曲谱图片
+// @description  下载弹琴吧网页端(VIP)曲谱图片
 // @author       RepEater
 // @license      MIT
 // @match        *://www.tan8.com/yuepu*

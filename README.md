@@ -14,6 +14,8 @@
 ## 说明
 脚本加载后在网页端左下角会出现下载按钮，点击即可。
 
+目前仅支持钢琴谱下载，可以下载VIP谱面。
+
 ## 安装
 
 <details>
@@ -26,7 +28,7 @@
 <details>
 <summary>使用文件直链安装</summary>
 
-浏览器安装油猴脚本后，点击[文件链接](https://github.com/GZH2K19/tan8-downloader/raw/refs/heads/default/tan8-downloader.user.js)会自动跳转到安装界面。
+浏览器安装油猴后，点击[文件链接](https://github.com/GZH2K19/tan8-downloader/raw/refs/heads/default/tan8-downloader.user.js)会自动跳转到安装界面。
 
 </details>
 

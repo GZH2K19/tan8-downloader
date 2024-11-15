@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         弹琴吧曲谱下载
 // @namespace    https://github.com/GZH2K19/tan8-downloader
-// @version      1.0.0
+// @version      1.0.1
 // @description  下载弹琴吧网页端(VIP)曲谱图片
 // @author       RepEater
 // @license      MIT
@@ -17,6 +17,9 @@
 
 (function() {
     "use strict";
+
+    var titleElement = document.querySelector(".yuepu-text-info li:nth-child(2) p");
+    var title = titleElement ? titleElement.textContent.trim() : "未知标题";
 
     var msgDiv = document.createElement("div");
     msgDiv.id = "msgDiv";
@@ -60,10 +63,10 @@
         return button;
     }
 
-    async function downloadImages(base, typ) {
+    async function fetchImages(base, typ) {
         var pageNum = 0;
         var typName = typ === "standard" ? "X" : "J";
-        var downloadNext = async function() {
+        var fetchNext = async function() {
             var imageUrl = `${base}${pageNum}.png`;
             try {
                 let res = await fetch(imageUrl);
@@ -71,12 +74,12 @@
                 let blob = await res.blob();
                 var link = document.createElement("a");
                 link.href = URL.createObjectURL(blob);
-                link.download = `${ypid}-${typName}-${pageNum}.png`;
+                link.download = `${title} [${typName}-${pageNum+1}].png`;
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
                 pageNum++;
-                downloadNext();
+                fetchNext();
             } catch (error) {
                 if (error.message.includes("404")) {
                     info(`成功下载${pageNum}张图片~`);
@@ -85,10 +88,10 @@
                 }
             }
         };
-        downloadNext();
+        fetchNext();
     }
 
-    function handleDownload(arr) {
+    function analyzeImages(arr) {
         var url = arr.map(item => item.img[0])[0];
         var match = url.match(/(https:\/\/oss\.tan8\.com\/yuepuku\/\d+\/\d+\/)\d+_([a-z]+)_([a-z]+)\/+[^\/]+/);
         if (match) {
@@ -96,12 +99,37 @@
             var cid = match[2];
             var typ = match[3];
             var base = `${pre}${ypid}_${cid}_${typ}/${ypid}_${cid}.ypad.`;
-            downloadImages(base, typ);
+            fetchImages(base, typ);
         } else {alert("URL解析失败");}
     }
 
-    var xianButton = createButton("线谱下载", "100px", "#007bff", function() {handleDownload(yuepuArrXian);});
-    var jianButton = createButton("简谱下载", "40px", "#28a545", function() {handleDownload(yuepuArrJian);});
+    async function fetchAudio() {
+        var audioElement = document.getElementById("myAudio");
+        if (audioElement) {
+            var audioUrl = audioElement.querySelector("source").src;
+            try {
+                let res = await fetch(audioUrl);
+                if (!res.ok) throw new Error(res.status);
+                let blob = await res.blob();
+                var link = document.createElement("a");
+                link.href = URL.createObjectURL(blob);
+                link.download = `${title} [preview].mp3`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                info(`成功下载预览音频~`);
+            } catch (error) {
+                info(`下载出现错误QAQ`);
+            }
+        } else {
+            info(`未找到音频元素`);
+        }
+    }
+
+    var audioButton = createButton("下载音频", "160px", "#900090", function() {fetchAudio();});
+    var xianButton = createButton("下载线谱", "100px", "#007bff", function() {analyzeImages(yuepuArrXian);});
+    var jianButton = createButton("下载简谱", "40px", "#28a545", function() {analyzeImages(yuepuArrJian);});
+    document.body.appendChild(audioButton);
     document.body.appendChild(xianButton);
     document.body.appendChild(jianButton);
 })();
